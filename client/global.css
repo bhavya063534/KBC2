@@ -1,0 +1,211 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * KBC-inspired theme with dark blue/purple background and cyan/turquoise neon accents
+   * Colors are expressed as HSL values for use with Tailwind
+   */
+  :root {
+    --background: 240 30% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 240 25% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 25% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 30% 8%;
+
+    --secondary: 260 60% 35%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 15% 40%;
+    --muted-foreground: 0 0% 85%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 240 30% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 20% 25%;
+    --input: 240 25% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 25% 12%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 240 30% 8%;
+    --sidebar-accent: 260 60% 35%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 20% 25%;
+    --sidebar-ring: 180 100% 50%;
+  }
+
+  .dark {
+    --background: 240 30% 8%;
+    --foreground: 0 0% 100%;
+    --card: 240 25% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 25% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 30% 8%;
+    --secondary: 260 60% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 15% 40%;
+    --muted-foreground: 0 0% 85%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 240 30% 8%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 20% 25%;
+    --input: 240 25% 15%;
+    --ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins;
+  }
+}
+
+/* Neon glow animations */
+@keyframes neon-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 200, 255, 0.5), 0 0 10px rgba(0, 200, 255, 0.3), inset 0 0 5px rgba(0, 200, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.8), 0 0 20px rgba(0, 200, 255, 0.5), inset 0 0 10px rgba(0, 200, 255, 0.2);
+  }
+}
+
+@keyframes neon-pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(0, 200, 255, 0.5), 0 0 10px rgba(0, 200, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.8), 0 0 20px rgba(0, 200, 255, 0.5);
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 200, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 200, 255, 0);
+  }
+}
+
+@keyframes slide-in-answer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake-wrong {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes rotate-360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-up-down {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-neon-glow {
+  animation: neon-glow 2s ease-in-out infinite;
+}
+
+.animate-neon-pulse-glow {
+  animation: neon-pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+.animate-slide-in-answer {
+  animation: slide-in-answer 0.4s ease-out;
+}
+
+.animate-shake-wrong {
+  animation: shake-wrong 0.4s ease-in-out;
+}
+
+.animate-rotate-360 {
+  animation: rotate-360 20s linear infinite;
+}
+
+.animate-float-up-down {
+  animation: float-up-down 3s ease-in-out infinite;
+}
+
+/* Neon border class */
+.neon-border {
+  border: 2px solid hsl(180, 100%, 50%);
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.5), inset 0 0 10px rgba(0, 200, 255, 0.1);
+}
+
+.neon-border-hover {
+  border: 2px solid hsl(180, 100%, 50%);
+  transition: all 0.3s ease;
+}
+
+.neon-border-hover:hover {
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.8), inset 0 0 10px rgba(0, 200, 255, 0.2);
+}
+
+.neon-text {
+  color: hsl(180, 100%, 50%);
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+}
