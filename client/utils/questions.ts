@@ -331,7 +331,7 @@ export const questionsBank: Question[] = [
   },
   {
     id: 47,
-    question: "श्रावक के अतिशय कितने?",
+    question: "श्रावक के आतिचार कितने?",
     options: ["124", "271", "356", "81"],
     correctAnswer: 0,
     difficulty: "hard",
