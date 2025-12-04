@@ -89,5 +89,5 @@ export function markQuestionsAsUsed(ids: number[]): void {
 }
 
 export function hasQuestionsRemaining(usedIds: Set<number>): boolean {
-  return usedIds.size < 50;
+  return usedIds.size < 150;
 }
