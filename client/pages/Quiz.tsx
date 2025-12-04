@@ -25,6 +25,7 @@ export default function Quiz() {
   const [currentQuestions, setCurrentQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [batchScore, setBatchScore] = useState(0);
   const [batchNumber, setBatchNumber] = useState(1);
   const [usedQuestionIds, setUsedQuestionIds] = useState<Set<number>>(
     new Set()
@@ -61,6 +62,9 @@ export default function Quiz() {
     setIsLoading(true);
     setCurrentQuestionIndex(startIndex);
     setQuestionsAnswered(startIndex);
+    // Calculate current batch score based on total score and completed questions
+    const currentBatchScore = score % 10;
+    setBatchScore(currentBatchScore);
     // Don't reset lifelines when resuming - they persist within the batch
 
     const batchQuestions = questionsBank.filter((q: Question) => questionIds.includes(q.id));
@@ -80,6 +84,8 @@ export default function Quiz() {
     setCurrentQuestionIndex(0);
     setQuestionsAnswered(0);
     setIsBatchComplete(false);
+    // Reset batch score for new batch
+    setBatchScore(0);
     // Reset lifelines for new level/batch
     setUsedLifelines(new Set());
     setFiftyFiftyHidden(new Set());
@@ -116,7 +122,9 @@ export default function Quiz() {
 
     if (isCorrect) {
       const newScore = score + 1;
+      const newBatchScore = batchScore + 1;
       setScore(newScore);
+      setBatchScore(newBatchScore);
       saveScore(newScore);
     }
 
@@ -142,6 +150,8 @@ export default function Quiz() {
     saveCurrentBatch(nextBatchNumber);
     saveCurrentQuestionIndex(0);
     setIsBatchComplete(false);
+    // Reset batch score for new batch
+    setBatchScore(0);
     // Reset lifelines for new level/batch
     setUsedLifelines(new Set());
     setFiftyFiftyHidden(new Set());
@@ -152,6 +162,7 @@ export default function Quiz() {
   const handleRestart = () => {
     resetQuizSession();
     setScore(0);
+    setBatchScore(0);
     setBatchNumber(1);
     setUsedQuestionIds(new Set());
     setCurrentQuestionIndex(0);
@@ -324,7 +335,7 @@ export default function Quiz() {
       {/* Score Summary Modal */}
       {showSummary && (
         <ScoreSummary
-          score={score % 10}
+          score={batchScore}
           totalQuestions={10}
           batchNumber={batchNumber}
           onNextBatch={

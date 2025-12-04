@@ -43,7 +43,7 @@ export default function Index() {
             </div>
           </div>
         </header>
-
+        
         {/* Main Content */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-20">
           <div className="max-w-3xl w-full text-center">
